@@ -1,7 +1,7 @@
 # #21B-218-CS     Syed Usman Riaz   Linear Approach
 
 import pandas as pd
-import time  # Importing the time module
+import time 
 
 # Load the CSV files
 students_df = pd.read_csv('students.csv')
@@ -27,7 +27,6 @@ def get_most_relevant_date(group):
 most_relevant_dates = fees_df.groupby("student_id").apply(get_most_relevant_date).reset_index()
 most_relevant_dates.columns = ["student_id", "most_relevant_date"]
 
-# Start timing the execution
 start_time = time.time()
 
 # Iterate through student records
@@ -48,9 +47,6 @@ for index, student_row in students_df.iterrows():
     else:
         print(f"Invalid Student ID: {student_id}")
 
-# End timing the execution
 end_time = time.time()
-
-# Calculate and print the time taken
 execution_time = end_time - start_time
 print(f"\nTime taken for execution: {execution_time:.4f} seconds")

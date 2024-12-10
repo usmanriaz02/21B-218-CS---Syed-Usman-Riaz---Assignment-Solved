@@ -48,23 +48,17 @@ def process_student(student_row):
 
 # Execute processing in parallel
 if __name__ == "__main__":
-    # Start timing the execution
     start_time = time.time()
 
     # Convert students dataframe to list of dictionaries (rows) for parallel processing
     student_rows = students_df.to_dict("records")
 
-    # Use ThreadPoolExecutor for multiprocessing (since this is more efficient for I/O bound tasks)
     with ThreadPoolExecutor() as executor:
         results = list(executor.map(process_student, student_rows))
 
-    # Print results
     for result in results:
         print(result)
 
-    # End timing the execution
     end_time = time.time()
-
-    # Calculate and print the time taken
     execution_time = end_time - start_time
     print(f"Time taken for execution: {execution_time:.4f} seconds")
